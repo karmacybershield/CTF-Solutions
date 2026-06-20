@@ -1,0 +1,39 @@
+# 🏴‍☠️ Informe de Reconocimiento y Explotación – Host 172.17.0.3
+
+## 1. Enumeración inicial
+* **Puerto 22/tcp** ➡️ `SSH`
+  * **Servicio:** OpenSSH 8.9p1 Ubuntu 3ubuntu0.13
+  * **Resultado:** Acceso exitoso con credenciales válidas ➡️ usuario `student`.
+* **Puerto 8080/tcp** ➡️ `HTTP`
+  * **Servicio:** Apache httpd 2.4.52 (Ubuntu)
+  * **Sitio:** *“SUID Lab | whoami-labs”*
+  * **Observación:** Entorno de práctica con retos de escalada de privilegios.
+
+## 2. Acceso al sistema
+* **Usuario:** `student`
+* **Directorio inicial:** `/home/student`
+* **Exploración:** Acceso a raíz `/` con visibilidad de directorios estándar.
+* **Restricciones:** Sin privilegios root, acceso denegado a `/root`.
+
+## 3. Enumeración interna
+* **Archivos sensibles:** Detectado `/root/flag.txt`
+* **Binarios SUID encontrados:**
+  * `/usr/bin/cp`
+  * `/usr/bin/mv`
+  * `/usr/bin/su`
+  * `/usr/bin/newgrp`
+  * `/usr/bin/gpasswd`
+  * `/usr/bin/passwd`
+  * `/usr/bin/find`
+  * `/usr/bin/chfn`
+  * `/usr/bin/chsh`
+  * `/usr/bin/mount`
+  * `/usr/bin/umount`
+  * `/usr/lib/openssh/ssh-keysign`
+  * `/usr/lib/dbus-1.0/dbus-daemon-launch-helper`
+
+## 4. Explotación
+* Uso de binario legítimo `find` con permisos **SUID** para leer el archivo protegido.
+* **Comando utilizado:**
+  ```bash
+  find /root/flag.txt -exec cat {} \;
